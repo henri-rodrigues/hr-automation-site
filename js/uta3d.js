@@ -237,7 +237,8 @@ function init() {
       focus("overview", true);
     },
     (e) => {
-      if (e.total) loadingEl.textContent = `Carregando modelo 3D… ${Math.round((e.loaded / e.total) * 100)}%`;
+      // o GitHub Pages entrega o arquivo comprimido: loaded pode passar de total
+      if (e.total) loadingEl.textContent = `Carregando modelo 3D… ${Math.min(100, Math.round((e.loaded / e.total) * 100))}%`;
     },
     () => { loadingEl.textContent = "Não foi possível carregar o modelo 3D."; },
   );
