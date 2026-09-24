@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Automation — Automação Industrial para HVAC</title>
+<meta name="description" content="Automação industrial especializada em HVAC: UTAs, chillers, centrais de água gelada e climatização predial com alta tecnologia, precisão e eficiência.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Archivo:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="noise-overlay" aria-hidden="true"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<div class="progress-bar" aria-hidden="true"><div class="progress-bar__fill" id="scrollProgress"></div></div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header" id="siteHeader">
+  <div class="header__inner">
+    <a href="#top" class="header__logo">
+      <img src="img/hr-logo.webp" alt="HR Automation">
+    </a>
+
+    <nav class="header__nav" id="siteNav">
+      <a href="#solucoes" class="nav-link"><span>01</span>Soluções</a>
+      <a href="#produto" class="nav-link"><span>02</span>Tecnologia</a>
+      <a href="#valores" class="nav-link"><span>03</span>Diferenciais</a>
+      <a href="#setores" class="nav-link"><span>04</span>Setores</a>
+      <a href="#contato" class="nav-link"><span>05</span>Contato</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="#orcamento" class="btn btn--primary magnetic">
+        <span class="btn__label">Fazer Orçamento</span>
+        <span class="btn__icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__glow hero__glow--1" aria-hidden="true"></div>
+  <div class="hero__glow hero__glow--2" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <div class="hero__content">
+      <div class="reveal-up hero__eyebrow">
+        <span class="status-dot"></span>
+        <span class="mono">AUTOMAÇÃO INDUSTRIAL PARA HVAC</span>
+      </div>
+
+      <div class="hero__slides" id="heroSlides">
+        <div class="hero__slide is-active" data-slide="0">
+          <h1 class="hero__title">
+            <span class="reveal-line"><span class="reveal-inner hero__title-line">Automação de</span></span>
+            <span class="reveal-line"><span class="reveal-inner hero__title-line hero__title-line--accent">precisão para HVAC.</span></span>
+          </h1>
+          <p class="hero__subtitle reveal-up" data-delay="0.3">
+            Projetamos, integramos e automatizamos climatização industrial e predial —
+            de UTAs a centrais de água gelada, com engenharia de ponta.
+          </p>
+        </div>
+
+        <div class="hero__slide" data-slide="1">
+          <h1 class="hero__title">
+            <span class="hero__title-line">Controle total da sua</span>
+            <span class="hero__title-line hero__title-line--accent">climatização.</span>
+          </h1>
+          <p class="hero__subtitle">
+            BMS, supervisório e integração via protocolos abertos — sua operação
+            visível e comandável de qualquer lugar.
+          </p>
+        </div>
+
+        <div class="hero__slide" data-slide="2">
+          <h1 class="hero__title">
+            <span class="hero__title-line">Engenharia elétrica de</span>
+            <span class="hero__title-line hero__title-line--accent">confiança.</span>
+          </h1>
+          <p class="hero__subtitle">
+            Painéis projetados, testados e validados antes de qualquer instalação
+            entrar em operação.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero__cta reveal-up" data-delay="0.45">
+        <a href="#orcamento" class="btn btn--primary btn--lg magnetic">
+          <span class="btn__label">Fazer Orçamento</span>
+          <span class="btn__icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <a href="#produto" class="btn btn--ghost btn--lg">
+          <span class="btn__label">Conheça as soluções</span>
+        </a>
+      </div>
+
+      <div class="hero__dots reveal-up" data-delay="0.6" id="heroDots">
+        <button class="hero__dot is-active" data-slide="0" aria-label="Slide 1 de 3"></button>
+        <button class="hero__dot" data-slide="1" aria-label="Slide 2 de 3"></button>
+        <button class="hero__dot" data-slide="2" aria-label="Slide 3 de 3"></button>
+      </div>
+    </div>
+
+    <div class="hero__visual reveal-up" data-delay="0.3">
+      <div class="hero__photo-card">
+        <img class="hero__photo is-active" data-slide="0" src="img/hvac-rooftop-units.jpg" alt="Unidades condensadoras HVAC instaladas em cobertura industrial">
+        <img class="hero__photo" data-slide="1" src="img/hvac-chiller-room.jpg" alt="Casa de máquinas com chillers e tubulações de precisão">
+        <img class="hero__photo" data-slide="2" src="img/hvac-control-panel.jpg" alt="Sala de controle e supervisório de sistemas HVAC">
+        <span class="hero__photo-badge">
+          <span class="status-dot"></span>
+          <span>
+            <strong>HR Automation</strong>
+            <em>Engenharia em campo, 24/7</em>
+          </span>
+        </span>
+      </div>
+      <div class="hero__photo-glow" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <a href="#produto" class="hero__scroll-cue" aria-label="Rolar para baixo">
+    <span class="mono">SCROLL</span>
+    <span class="scroll-cue__line"><span class="scroll-cue__dot"></span></span>
+  </a>
+</section>
+
+<!-- ===================== MARQUEE (textura) ===================== -->
+<section class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>PAINÉIS ELÉTRICOS</span><span class="dot">◆</span>
+    <span>CONTROLE DE UTAs &amp; CHILLERS</span><span class="dot">◆</span>
+    <span>BMS &amp; SUPERVISÓRIO</span><span class="dot">◆</span>
+    <span>INTEGRAÇÃO IoT</span><span class="dot">◆</span>
+    <span>RETROFIT DE HVAC</span><span class="dot">◆</span>
+    <span>MANUTENÇÃO PREDITIVA</span><span class="dot">◆</span>
+    <span>PAINÉIS ELÉTRICOS</span><span class="dot">◆</span>
+    <span>CONTROLE DE UTAs &amp; CHILLERS</span><span class="dot">◆</span>
+    <span>BMS &amp; SUPERVISÓRIO</span><span class="dot">◆</span>
+    <span>INTEGRAÇÃO IoT</span><span class="dot">◆</span>
+    <span>RETROFIT DE HVAC</span><span class="dot">◆</span>
+    <span>MANUTENÇÃO PREDITIVA</span><span class="dot">◆</span>
+  </div>
+</section>
+
+<!-- ===================== SOLUÇÕES (grade) ===================== -->
+<section class="solutions" id="solucoes">
+  <div class="solutions__head">
+    <span class="tag reveal-up">/// O QUE FAZEMOS</span>
+    <h2 class="section-title reveal-up">Soluções completas<br><span>para engenharia HVAC.</span></h2>
+  </div>
+
+  <div class="solutions__grid">
+    <article class="solution-card reveal-up">
+      <span class="solution-card__index mono">01</span>
+      <h3>Painéis Elétricos</h3>
+      <p>Painéis sob medida, projetados e montados para suportar operação contínua.</p>
+      <a href="#orcamento" class="solution-card__link">Saiba mais<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </article>
+
+    <article class="solution-card reveal-up">
+      <span class="solution-card__index mono">02</span>
+      <h3>Controle de UTAs &amp; Chillers</h3>
+      <p>Automação completa de unidades de tratamento de ar e chillers, do sensor ao supervisório.</p>
+      <a href="#orcamento" class="solution-card__link">Saiba mais<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </article>
+
+    <article class="solution-card reveal-up">
+      <span class="solution-card__index mono">03</span>
+      <h3>BMS &amp; Supervisório</h3>
+      <p>Integração com sistemas prediais via protocolos abertos, como BACnet e Modbus.</p>
+      <a href="#orcamento" class="solution-card__link">Saiba mais<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </article>
+
+    <article class="solution-card reveal-up">
+      <span class="solution-card__index mono">04</span>
+      <h3>Integração IoT</h3>
+      <p>Monitoramento remoto e alertas em tempo real, de qualquer lugar.</p>
+      <a href="#orcamento" class="solution-card__link">Saiba mais<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </article>
+
+    <article class="solution-card reveal-up">
+      <span class="solution-card__index mono">05</span>
+      <h3>Retrofit de HVAC</h3>
+      <p>Modernizamos sistemas legados sem parar a operação da sua planta.</p>
+      <a href="#orcamento" class="solution-card__link">Saiba mais<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </article>
+
+    <article class="solution-card reveal-up">
+      <span class="solution-card__index mono">06</span>
+      <h3>Manutenção Preditiva</h3>
+      <p>Sensores e análise de dados antecipam falhas antes que elas aconteçam.</p>
+      <a href="#orcamento" class="solution-card__link">Saiba mais<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== ESCALA (número grande) ===================== -->
+<section class="growth">
+  <div class="growth__inner">
+    <span class="tag reveal-up">/// ESCALA E CONFIANÇA</span>
+
+    <div class="growth__figure reveal-up">
+      <span class="growth__number"><span data-count="480">0</span><span class="growth__suffix">+</span></span>
+      <div class="growth__copy">
+        <h2>Projetos de automação<br>HVAC entregues.</h2>
+        <p>De pequenas climatizações comerciais a centrais de água gelada de grande porte — nossa engenharia já esteve em campo em todo o Brasil.</p>
+      </div>
+    </div>
+
+    <div class="growth__stats reveal-up">
+      <div class="growth__stat">
+        <span><span data-count="12">0</span><span class="growth__suffix">+</span></span>
+        <p>Anos de mercado</p>
+      </div>
+      <div class="growth__stat">
+        <span><span data-count="99">0</span><span class="growth__suffix">.8%</span></span>
+        <p>Uptime em campo</p>
+      </div>
+      <div class="growth__stat">
+        <span><span data-count="6">0</span><span class="growth__suffix">+</span></span>
+        <p>Setores atendidos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== UTA 3D + IHM (simulação JS, modelo em models/uta.glb) ===================== -->
+<section class="live" id="produto">
+  <div class="live__intro">
+    <span class="tag reveal-up">/// UTA 3D + IHM</span>
+    <h2 class="section-title reveal-up">A máquina e a IHM,<br><span>funcionando juntas.</span></h2>
+    <p class="reveal-up">
+      Uma UTA modelada em 3D e simulada em tempo real. Opere pelo terminal logo abaixo:
+      ao abrir o setpoint de temperatura, a válvula ou o ventilador, a câmera vai até o
+      componente. Arraste a máquina para girar.
+    </p>
+  </div>
+
+  <div class="uta3d reveal-up" id="livePanel">
+    <canvas class="uta3d__canvas" id="utaCanvas" role="img" aria-label="Modelo 3D interativo da unidade de tratamento de ar"></canvas>
+
+    <div class="uta3d__loading mono" id="utaLoading">Carregando modelo 3D…</div>
+  </div>
+  <div class="uta3d-bar">
+    <span class="uta3d-bar__id"><span class="live__led" aria-hidden="true"></span><span class="mono">UTA-01</span><span class="live__status mono" id="liveStatus">AGUARDANDO</span></span>
+    <button type="button" class="uta3d__btn uta3d__btn--accent" id="liveLoad">Simular pico de carga</button>
+  </div>
+
+  <div class="pgd-wrap" id="pgdWrap">
+    <div class="pgd reveal-up" id="pgd" tabindex="0" role="application"
+         aria-label="Terminal de IHM simulado. Setas navegam, Enter edita, Esc volta, A abre alarmes, P abre o menu.">
+      <div class="pgd__face">
+        <div class="pgd__keys">
+          <button type="button" class="pgd__key pgd__key--alarm" data-key="ALARM" aria-label="Alarm" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 20H2z" fill="currentColor"/><path d="M12 9.5v5M12 17v.01" stroke="#2b2f34" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </button>
+          <button type="button" class="pgd__key pgd__key--prg" data-key="PRG" aria-label="Prg" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="3.2"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
+          </button>
+          <button type="button" class="pgd__key pgd__key--esc" data-key="ESC" aria-label="Esc" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 4 10l5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 10H14a5 5 0 0 1 0 10h-3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+
+        <div class="pgd__screen">
+          <div class="pgd__lcd"><div class="pgd__glass"><canvas id="pgdCanvas" width="1320" height="640" aria-hidden="true"></canvas></div></div>
+          <div class="pgd__brand" aria-hidden="true"><span class="pgd__logo">CAREL</span><span class="pgd__model">pGD</span></div>
+        </div>
+
+        <div class="pgd__keys">
+          <button type="button" class="pgd__key pgd__key--nav" data-key="UP" aria-label="Up" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M5.5 11 12 4.5 18.5 11" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="pgd__key pgd__key--nav" data-key="ENTER" aria-label="Enter" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4v7a3 3 0 0 1-3 3H6" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M10 9.5 5.5 14l4.5 4.5" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="pgd__key pgd__key--nav" data-key="DOWN" aria-label="Down" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M5.5 13 12 19.5 18.5 13" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <pre class="sr-only" id="pgdText" aria-live="polite"></pre>
+    </div>
+
+    <div class="pgd-wrap__copy">
+      <div class="pgd-wrap__intro">
+      <span class="tag reveal-up">/// TERMINAL DE CAMPO</span>
+      <h3 class="section-title reveal-up">Opere pela IHM,<br><span>como no quadro.</span></h3>
+      <p class="reveal-up">
+        A mesma UTA, agora pelo terminal que vai na porta do painel. As telas seguem um
+        programa real de fancoil: navegue, ajuste o setpoint, passe a válvula para manual
+        ou desligue a unidade — o supervisório acima responde junto.
+      </p>
+      </div>
+      <div class="pgd-wrap__help">
+      <ul class="pgd-keys reveal-up">
+        <li><span class="pgd-keys__k"><kbd>↑</kbd><kbd>↓</kbd></span>Navegar entre telas · alterar valor</li>
+        <li><span class="pgd-keys__k"><kbd>↵</kbd></span>Entrar · editar · confirmar</li>
+        <li><span class="pgd-keys__k"><kbd>Esc</kbd></span>Voltar</li>
+        <li><span class="pgd-keys__k"><kbd>A</kbd></span>Alarmes · reset no fim da lista</li>
+        <li><span class="pgd-keys__k"><kbd>P</kbd></span>Menu PRG (login)</li>
+      </ul>
+      <p class="pgd-hint mono reveal-up">Na tela principal, ↑ ↓ escolhe On/Off, Set ou Info e ↵ entra.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== VALORES / DIFERENCIAIS ===================== -->
+<section class="values" id="valores">
+  <div class="values__head">
+    <span class="tag reveal-up">/// POR QUE A HR AUTOMATION</span>
+    <h2 class="section-title reveal-up">Engenharia que sustenta<br><span>o seu conforto térmico.</span></h2>
+  </div>
+
+  <div class="values__grid">
+    <article class="value-card reveal-up">
+      <div class="value-card__icon">
+        <svg viewBox="0 0 40 40" fill="none"><rect x="13" y="13" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M20 4V10M20 30V36M4 20H10M30 20H36M8 8L12 12M32 8L28 12M8 32L12 28M32 32L28 28" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Alta Tecnologia</h3>
+      <p>Controladores e softwares de última geração, compatíveis com os principais protocolos de HVAC/BMS do mercado.</p>
+      <span class="value-card__index mono">/ 01</span>
+    </article>
+
+    <article class="value-card reveal-up">
+      <div class="value-card__icon">
+        <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="currentColor" stroke-width="1.6"/><circle cx="20" cy="20" r="9" stroke="currentColor" stroke-width="1.6"/><circle cx="20" cy="20" r="2" fill="currentColor"/></svg>
+      </div>
+      <h3>Precisão</h3>
+      <p>Cada painel, cada ponto de controle e cada conexão são calibrados para tolerância zero a falhas.</p>
+      <span class="value-card__index mono">/ 02</span>
+    </article>
+
+    <article class="value-card reveal-up">
+      <div class="value-card__icon">
+        <svg viewBox="0 0 40 40" fill="none"><path d="M20 6L8 12V20C8 28 13 33.5 20 35C27 33.5 32 28 32 20V12L20 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 20L18.5 23.5L26 15.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Eficiência</h3>
+      <p>Processos otimizados que reduzem consumo energético e aumentam a disponibilidade do sistema.</p>
+      <span class="value-card__index mono">/ 03</span>
+    </article>
+
+    <article class="value-card reveal-up">
+      <div class="value-card__icon">
+        <svg viewBox="0 0 40 40" fill="none"><path d="M20 4L34 10V19C34 27.5 28 33.7 20 36C12 33.7 6 27.5 6 19V10L20 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Confiabilidade</h3>
+      <p>Suporte técnico contínuo e monitoramento remoto para garantir que sua climatização nunca pare.</p>
+      <span class="value-card__index mono">/ 04</span>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== SETORES ATENDIDOS ===================== -->
+<section class="sectors" id="setores">
+  <div class="sectors__head">
+    <span class="tag reveal-up">/// ONDE ATUAMOS</span>
+    <h2 class="section-title reveal-up">Setores que confiam<br><span>na nossa engenharia.</span></h2>
+    <p class="reveal-up">Da planta industrial ao data center — automação HVAC sob medida para cada operação.</p>
+  </div>
+
+  <div class="sectors__grid">
+    <article class="sector-card sector-card--lg reveal-up">
+      <img src="img/hvac-chiller-room.jpg" alt="Casa de máquinas industrial com chillers e tubulações">
+      <div class="sector-card__overlay"></div>
+      <div class="sector-card__body">
+        <h3>Industrial</h3>
+        <p>Linhas de produção, casas de máquinas e controle de processos com máxima disponibilidade.</p>
+      </div>
+    </article>
+
+    <article class="sector-card reveal-up">
+      <img src="img/hvac-rooftop-units.jpg" alt="Condensadoras HVAC em cobertura comercial">
+      <div class="sector-card__overlay"></div>
+      <div class="sector-card__body">
+        <h3>Comercial &amp; Varejo</h3>
+        <p>Climatização e automação predial com eficiência energética.</p>
+      </div>
+    </article>
+
+    <article class="sector-card reveal-up">
+      <img src="img/hvac-technician.jpg" alt="Técnico instalando e ajustando painel elétrico HVAC">
+      <div class="sector-card__overlay"></div>
+      <div class="sector-card__body">
+        <h3>Hospitalar &amp; Saúde</h3>
+        <p>Controle crítico de temperatura e pressão com redundância.</p>
+      </div>
+    </article>
+
+    <article class="sector-card reveal-up">
+      <img src="img/hvac-fans.jpg" alt="Unidades HVAC instaladas em cobertura de hotel">
+      <div class="sector-card__overlay"></div>
+      <div class="sector-card__body">
+        <h3>Hotelaria</h3>
+        <p>Conforto térmico consistente em grande escala, com baixo consumo.</p>
+      </div>
+    </article>
+
+    <article class="sector-card reveal-up">
+      <img src="img/hvac-pipes.jpg" alt="Motores e tubulações de sistema de refrigeração industrial">
+      <div class="sector-card__overlay"></div>
+      <div class="sector-card__body">
+        <h3>Alimentício</h3>
+        <p>Refrigeração e cadeia de frio monitoradas ponta a ponta.</p>
+      </div>
+    </article>
+
+    <article class="sector-card reveal-up">
+      <img src="img/hvac-control-panel.jpg" alt="Sala de controle e supervisório de sistemas críticos">
+      <div class="sector-card__overlay"></div>
+      <div class="sector-card__body">
+        <h3>Data Centers</h3>
+        <p>Climatização de precisão para ambientes críticos 24/7.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== MARCAS PARCEIRAS ===================== -->
+<section class="brands-band" id="marcas">
+  <div class="brands-band__head reveal-up">
+    <span class="tag">/// ECOSSISTEMA HVAC</span>
+    <h2 class="section-title">Integramos as principais<br><span>marcas do mercado.</span></h2>
+    <p>Toque em uma marca para ver o que ela faz — e como ela entra nos nossos projetos.</p>
+  </div>
+
+  <div class="brands-grid">
+      <button type="button" class="brand-card reveal-up" data-brand="carel" aria-label="CAREL — ver resumo">
+        <img src="img/marcas/carel.svg" alt="CAREL" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="danfoss" aria-label="Danfoss — ver resumo">
+        <img src="img/marcas/danfoss.svg" alt="Danfoss" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="copeland" aria-label="Copeland — ver resumo">
+        <img src="img/marcas/copeland.png" alt="Copeland" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="weg" aria-label="WEG — ver resumo">
+        <img src="img/marcas/weg.svg" alt="WEG" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="siemens" aria-label="Siemens — ver resumo">
+        <img src="img/marcas/siemens.svg" alt="Siemens" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="schneider-electric" aria-label="Schneider Electric — ver resumo">
+        <img src="img/marcas/schneider-electric.svg" alt="Schneider Electric" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="rockwell-automation" aria-label="Rockwell Automation — ver resumo">
+        <img src="img/marcas/rockwell-automation.svg" alt="Rockwell Automation" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="abb" aria-label="ABB — ver resumo">
+        <img src="img/marcas/abb.svg" alt="ABB" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="omron" aria-label="OMRON — ver resumo">
+        <img src="img/marcas/omron.svg" alt="OMRON" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="mitsubishi-electric" aria-label="Mitsubishi Electric — ver resumo">
+        <img src="img/marcas/mitsubishi-electric.svg" alt="Mitsubishi Electric" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="honeywell" aria-label="Honeywell — ver resumo">
+        <img src="img/marcas/honeywell.svg" alt="Honeywell" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="johnson-controls" aria-label="Johnson Controls — ver resumo">
+        <img src="img/marcas/johnson-controls.svg" alt="Johnson Controls" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="festo" aria-label="Festo — ver resumo">
+        <img src="img/marcas/festo.svg" alt="Festo" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="phoenix-contact" aria-label="Phoenix Contact — ver resumo">
+        <img src="img/marcas/phoenix-contact.svg" alt="Phoenix Contact" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="ziehl-abegg" aria-label="Ziehl-Abegg — ver resumo">
+        <img src="img/marcas/ziehl-abegg.svg" alt="Ziehl-Abegg" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="ebm-papst" aria-label="ebm-papst — ver resumo">
+        <img src="img/marcas/ebm-papst.svg" alt="ebm-papst" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+      <button type="button" class="brand-card reveal-up" data-brand="weidmuller" aria-label="Weidmüller — ver resumo">
+        <img src="img/marcas/weidmuller.svg" alt="Weidmüller" loading="lazy" decoding="async">
+        <span class="brand-card__more" aria-hidden="true">+</span>
+      </button>
+  </div>
+
+  <dialog class="brand-dialog" id="brandDialog" aria-labelledby="brandName">
+    <form method="dialog" class="brand-dialog__close-form">
+      <button class="brand-dialog__close" aria-label="Fechar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </form>
+    <div class="brand-dialog__logo"><img id="brandLogo" src="" alt=""></div>
+    <p class="brand-dialog__meta mono" id="brandMeta"></p>
+    <h3 class="brand-dialog__name" id="brandName"></h3>
+    <p class="brand-dialog__text" id="brandText"></p>
+    <div class="brand-dialog__hr">
+      <span class="mono">NA HR AUTOMATION</span>
+      <p id="brandHr"></p>
+    </div>
+    <div class="brand-dialog__nav">
+      <button type="button" class="brand-dialog__step" id="brandPrev" aria-label="Marca anterior">←</button>
+      <span class="mono" id="brandCount"></span>
+      <button type="button" class="brand-dialog__step" id="brandNext" aria-label="Próxima marca">→</button>
+    </div>
+  </dialog>
+</section>
+
+<!-- ===================== CTA BANNER ===================== -->
+<section class="cta-banner" id="orcamento">
+  <div class="cta-banner__grid" aria-hidden="true"></div>
+  <div class="cta-banner__content">
+    <span class="tag tag--light reveal-up">/// VAMOS CLIMATIZAR JUNTOS</span>
+    <h2 class="section-title section-title--light reveal-up">Pronto para elevar o nível<br><span>da sua climatização?</span></h2>
+    <p class="reveal-up">Fale com nossos engenheiros e receba uma proposta técnica personalizada.</p>
+    <a href="#contato" class="btn btn--light btn--lg magnetic reveal-up">
+      <span class="btn__label">Fazer Orçamento</span>
+      <span class="btn__icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER / CONTATO ===================== -->
+<footer class="footer" id="contato">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <img src="img/hr-logo.webp" alt="HR Automation" class="footer__logo">
+      <p>Automação industrial para HVAC — de UTAs a centrais de água gelada, com precisão e eficiência.</p>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="mono">CONTATO</h4>
+      <a href="mailto:contato@hrautomation.com.br">contato@hrautomation.com.br</a>
+      <a href="tel:+550000000000">+55 (00) 0000-0000</a>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="mono">NAVEGAÇÃO</h4>
+      <a href="#solucoes">Soluções</a>
+      <a href="#produto">Tecnologia</a>
+      <a href="#valores">Diferenciais</a>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="mono">REDES</h4>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <span>© <span id="year"></span> HR Automation. Todos os direitos reservados.</span>
+    <span class="mono status-dot-wrap"><span class="status-dot"></span> SISTEMAS OPERACIONAIS</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/pgd.js"></script>
+<script src="js/brands.js"></script>
+<script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  } }
+</script>
+<script type="module" src="js/uta3d.js"></script>
+</body>
+</html>

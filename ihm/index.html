@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>HR Automation — IHM</title>
+<meta name="description" content="Automação industrial especializada em HVAC: UTAs, chillers, centrais de água gelada e climatização predial — opere o nosso painel IHM.">
+<meta name="theme-color" content="#c9cec9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ihm.css">
+</head>
+<body>
+
+<main class="door">
+  <div class="hmi" id="hmi">
+    <span class="screw screw--tl" aria-hidden="true"></span>
+    <span class="screw screw--tr" aria-hidden="true"></span>
+    <span class="screw screw--bl" aria-hidden="true"></span>
+    <span class="screw screw--br" aria-hidden="true"></span>
+
+    <div class="hmi__screen" id="screen">
+
+      <!-- ===================== BOOT ===================== -->
+      <div class="boot" id="boot">
+        <div class="boot__inner">
+          <img class="boot__logo" src="../img/hr-logo.webp" alt="HR Automation">
+          <pre class="boot__log mono" id="bootLog" aria-live="polite"></pre>
+          <div class="boot__bar"><span id="bootBar"></span></div>
+          <button type="button" class="boot__start mono" id="bootStart" hidden>TOQUE NA TELA PARA INICIAR</button>
+        </div>
+      </div>
+
+      <!-- ===================== UI ===================== -->
+      <div class="ui" id="ui" hidden>
+        <header class="tb">
+          <div class="tb__brand"><img src="../img/hr-logo.webp" alt="HR Automation"></div>
+          <div class="tb__title">
+            <span class="tb__num mono" id="scrNum">01</span>
+            <strong id="scrTitle">VISÃO GERAL</strong>
+          </div>
+          <div class="tb__right">
+            <button type="button" class="tb__alarm" id="alarmBtn" aria-label="Alarmes ativos">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>
+              <span class="mono" id="alarmCount">0</span>
+            </button>
+            <span class="tb__user mono">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+              OPERADOR
+            </span>
+            <button type="button" class="tb__sound" id="soundBtn" aria-pressed="true" aria-label="Som dos botões">
+              <svg class="ico-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              <svg class="ico-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>
+            </button>
+            <span class="tb__clock mono"><span id="clockDate">--/--/----</span><strong id="clockTime">--:--:--</strong></span>
+          </div>
+          <span class="tb__load" id="loadBar" aria-hidden="true"></span>
+        </header>
+
+        <div class="views">
+
+          <!-- ========== F1 · VISÃO GERAL ========== -->
+          <section class="view" id="inicio" data-num="01" data-title="VISÃO GERAL">
+            <div class="home">
+              <div class="pn home__msg">
+                <div class="pn__h"><span>MENSAGEM DO SISTEMA</span><span class="pill pill--ok"><i class="led led--ok"></i>ONLINE</span></div>
+                <div class="pn__b">
+                  <p class="eyebrow mono">AUTOMAÇÃO INDUSTRIAL PARA HVAC</p>
+                  <h1 class="home__title">Automação de<br><span>precisão para HVAC.</span></h1>
+                  <p class="home__type mono" aria-hidden="true"><span class="home__prompt">&gt;</span> <span id="typeLine"></span><i class="caret"></i></p>
+                  <p class="home__lead">
+                    Projetamos, integramos e automatizamos climatização industrial e predial —
+                    de UTAs a centrais de água gelada, com engenharia de ponta.
+                  </p>
+                  <div class="home__actions">
+                    <button type="button" class="hb hb--primary hb--lg" data-go="orcamento"><span class="hb__k mono">F7</span>Solicitar orçamento</button>
+                    <button type="button" class="hb hb--lg" data-go="supervisorio"><span class="hb__k mono">F3</span>Abrir supervisório</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="home__side">
+                <div class="pn">
+                  <div class="pn__h"><span>INDICADORES</span><span class="mono">HR-KPI</span></div>
+                  <div class="pn__b kpis">
+                    <div class="nd"><span class="nd__l">Projetos entregues</span><strong class="nd__v mono"><span data-count="480">0</span><small>+</small></strong></div>
+                    <div class="nd"><span class="nd__l">Anos de mercado</span><strong class="nd__v mono"><span data-count="12">0</span><small>+</small></strong></div>
+                    <div class="nd"><span class="nd__l">Uptime em campo</span><strong class="nd__v mono"><span data-count="99.8" data-decimals="1">0</span><small>%</small></strong></div>
+                    <div class="nd"><span class="nd__l">Setores atendidos</span><strong class="nd__v mono"><span data-count="6">0</span><small>+</small></strong></div>
+                  </div>
+                </div>
+
+                <div class="pn">
+                  <div class="pn__h"><span>EQUIPAMENTOS</span><span class="mono">CARGA</span></div>
+                  <ul class="eqs">
+                    <li class="eq" data-go="supervisorio" role="button" tabindex="0">
+                      <span class="eq__tag mono">UTA-01</span><span class="eq__name">Unidade de tratamento de ar</span>
+                      <span class="pill pill--ok">RUN</span>
+                      <span class="eq__bar"><span id="eqUta"></span></span><span class="eq__val mono" id="eqUtaVal">0%</span>
+                    </li>
+                    <li class="eq">
+                      <span class="eq__tag mono">CH-01</span><span class="eq__name">Chiller parafuso</span>
+                      <span class="pill pill--ok">RUN</span>
+                      <span class="eq__bar"><span data-eq="62"></span></span><span class="eq__val mono">62%</span>
+                    </li>
+                    <li class="eq">
+                      <span class="eq__tag mono">BAG-01</span><span class="eq__name">Bomba de água gelada</span>
+                      <span class="pill pill--ok">RUN</span>
+                      <span class="eq__bar"><span data-eq="78"></span></span><span class="eq__val mono">78%</span>
+                    </li>
+                    <li class="eq">
+                      <span class="eq__tag mono">TR-01</span><span class="eq__name">Torre de resfriamento</span>
+                      <span class="pill pill--stby">STBY</span>
+                      <span class="eq__bar"><span data-eq="0"></span></span><span class="eq__val mono">0%</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========== F2 · SOLUÇÕES ========== -->
+          <section class="view" id="solucoes" data-num="02" data-title="SOLUÇÕES · MÓDULOS">
+            <div class="md">
+              <div class="pn md__list">
+                <div class="pn__h"><span>MÓDULOS DISPONÍVEIS</span><span class="mono">6</span></div>
+                <div class="lst" role="tablist" aria-label="Soluções">
+                  <button type="button" class="li is-active" role="tab" aria-selected="true" data-sol="0"><span class="li__n mono">01</span><span class="li__t">Painéis Elétricos</span><i class="led led--ok"></i></button>
+                  <button type="button" class="li" role="tab" aria-selected="false" data-sol="1"><span class="li__n mono">02</span><span class="li__t">Controle de UTAs &amp; Chillers</span><i class="led led--ok"></i></button>
+                  <button type="button" class="li" role="tab" aria-selected="false" data-sol="2"><span class="li__n mono">03</span><span class="li__t">BMS &amp; Supervisório</span><i class="led led--ok"></i></button>
+                  <button type="button" class="li" role="tab" aria-selected="false" data-sol="3"><span class="li__n mono">04</span><span class="li__t">Integração IoT</span><i class="led led--ok"></i></button>
+                  <button type="button" class="li" role="tab" aria-selected="false" data-sol="4"><span class="li__n mono">05</span><span class="li__t">Retrofit de HVAC</span><i class="led led--ok"></i></button>
+                  <button type="button" class="li" role="tab" aria-selected="false" data-sol="5"><span class="li__n mono">06</span><span class="li__t">Manutenção Preditiva</span><i class="led led--ok"></i></button>
+                </div>
+              </div>
+
+              <div class="pn md__detail" role="tabpanel">
+                <div class="pn__h"><span id="solHead">MÓDULO 01</span><span class="pill pill--ok"><i class="led led--ok"></i>DISPONÍVEL</span></div>
+                <div class="pn__b">
+                  <article class="sol is-active" data-sol="0">
+                    <h2>Painéis Elétricos</h2>
+                    <p>Painéis sob medida, projetados e montados para suportar operação contínua.</p>
+                    <h4 class="mono">ESCOPO</h4>
+                    <ul class="checks"><li>Projeto elétrico e diagramas de força e comando</li><li>Montagem e testes em bancada antes da entrega</li><li>Comissionamento e start-up em campo</li></ul>
+                    <dl class="params"><div><dt>Aplicação</dt><dd>Força e comando HVAC</dd></div><div><dt>Validação</dt><dd>100% testado em bancada</dd></div></dl>
+                  </article>
+                  <article class="sol" data-sol="1">
+                    <h2>Controle de UTAs &amp; Chillers</h2>
+                    <p>Automação completa de unidades de tratamento de ar e chillers, do sensor ao supervisório.</p>
+                    <h4 class="mono">ESCOPO</h4>
+                    <ul class="checks"><li>Malhas de controle de temperatura, umidade e pressão</li><li>Sequenciamento de chillers e bombas</li><li>Integração direta com o supervisório</li></ul>
+                    <dl class="params"><div><dt>Controle</dt><dd>PID · sequenciamento</dd></div><div><dt>Equipamentos</dt><dd>UTAs, fancoils, chillers</dd></div></dl>
+                  </article>
+                  <article class="sol" data-sol="2">
+                    <h2>BMS &amp; Supervisório</h2>
+                    <p>Integração com sistemas prediais via protocolos abertos, como BACnet e Modbus.</p>
+                    <h4 class="mono">ESCOPO</h4>
+                    <ul class="checks"><li>Telas de supervisão sob medida</li><li>Históricos, tendências e gestão de alarmes</li><li>Integração com sistemas prediais existentes</li></ul>
+                    <dl class="params"><div><dt>Protocolos</dt><dd>BACnet · Modbus · OPC-UA</dd></div><div><dt>Acesso</dt><dd>Local e remoto</dd></div></dl>
+                  </article>
+                  <article class="sol" data-sol="3">
+                    <h2>Integração IoT</h2>
+                    <p>Monitoramento remoto e alertas em tempo real, de qualquer lugar.</p>
+                    <h4 class="mono">ESCOPO</h4>
+                    <ul class="checks"><li>Gateways de telemetria</li><li>Alertas em tempo real</li><li>Painéis de acompanhamento remotos</li></ul>
+                    <dl class="params"><div><dt>Comunicação</dt><dd>MQTT · Ethernet · 4G</dd></div><div><dt>Alertas</dt><dd>Tempo real</dd></div></dl>
+                  </article>
+                  <article class="sol" data-sol="4">
+                    <h2>Retrofit de HVAC</h2>
+                    <p>Modernizamos sistemas legados sem parar a operação da sua planta.</p>
+                    <h4 class="mono">ESCOPO</h4>
+                    <ul class="checks"><li>Levantamento do sistema existente</li><li>Substituição de controladores legados</li><li>Migração planejada, sem parar a operação</li></ul>
+                    <dl class="params"><div><dt>Base</dt><dd>Sistemas legados</dd></div><div><dt>Operação</dt><dd>Sem parada</dd></div></dl>
+                  </article>
+                  <article class="sol" data-sol="5">
+                    <h2>Manutenção Preditiva</h2>
+                    <p>Sensores e análise de dados antecipam falhas antes que elas aconteçam.</p>
+                    <h4 class="mono">ESCOPO</h4>
+                    <ul class="checks"><li>Sensores de vibração, corrente e temperatura</li><li>Análise de tendências</li><li>Relatórios e planos de ação</li></ul>
+                    <dl class="params"><div><dt>Monitoramento</dt><dd>Contínuo</dd></div><div><dt>Objetivo</dt><dd>Antecipar falhas</dd></div></dl>
+                  </article>
+                  <button type="button" class="hb hb--primary" id="solCta" data-go="orcamento">Solicitar este serviço</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========== F3 · SUPERVISÓRIO ========== -->
+          <section class="view" id="supervisorio" data-num="03" data-title="SUPERVISÓRIO · UTA-01">
+            <div class="sup">
+              <div class="sup__main">
+                <div class="pn">
+                  <div class="pn__h"><span>SINÓTICO · UTA-01 · BLOCO A</span><span class="pill" id="liveStatus">AGUARDANDO</span></div>
+                  <div class="pn__b">
+                    <svg class="sch" viewBox="0 0 640 256" role="img" aria-label="Sinótico da UTA: o ar externo passa pelo filtro, pela serpentina de água gelada e pelo ventilador até o ambiente">
+                      <defs>
+                        <pattern id="schHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                          <line x1="0" y1="0" x2="0" y2="6" class="sch-hatch"/>
+                        </pattern>
+                      </defs>
+                      <path class="sch-pipe" d="M130 40 H215 V116"/>
+                      <path class="sch-pipe" d="M255 116 V40 H320"/>
+                      <path class="flow flow--water" d="M130 40 H215 V116"/>
+                      <path class="flow flow--water" d="M255 116 V40 H320"/>
+                      <g class="sch-valve">
+                        <path d="M160 30 L184 50 L184 30 L160 50 Z"/>
+                        <line x1="172" y1="40" x2="172" y2="22"/>
+                        <rect x="163" y="12" width="18" height="10" rx="2"/>
+                      </g>
+                      <text class="sch-label" x="124" y="44" text-anchor="end">ÁGUA GELADA</text>
+                      <text class="sch-label" x="326" y="44">RETORNO</text>
+                      <text class="sch-value" x="192" y="21" id="sValve">0%</text>
+
+                      <rect class="sch-duct" x="20" y="110" width="580" height="90" rx="6"/>
+                      <path class="flow flow--air" d="M28 134 H592"/>
+                      <path class="flow flow--air" d="M28 155 H592"/>
+                      <path class="flow flow--air" d="M28 176 H592"/>
+                      <path class="sch-arrow" d="M606 138 L626 155 L606 172"/>
+                      <text class="sch-label" x="28" y="100">AR EXTERNO</text>
+                      <text class="sch-label" x="600" y="100" text-anchor="end">AMBIENTE</text>
+
+                      <rect class="sch-box" x="100" y="116" width="26" height="78" rx="2"/>
+                      <rect x="100" y="116" width="26" height="78" rx="2" fill="url(#schHatch)"/>
+
+                      <rect class="sch-box" x="198" y="116" width="74" height="78" rx="2"/>
+                      <polyline class="sch-coil" id="coilGroup" points="206,124 264,132 206,140 264,148 206,156 264,164 206,172 264,180 206,188"/>
+
+                      <circle class="sch-box" cx="380" cy="155" r="36"/>
+                      <g id="fanRotor" class="sch-rotor">
+                        <ellipse cx="380" cy="137" rx="7" ry="15"/>
+                        <ellipse cx="380" cy="137" rx="7" ry="15" transform="rotate(90 380 155)"/>
+                        <ellipse cx="380" cy="137" rx="7" ry="15" transform="rotate(180 380 155)"/>
+                        <ellipse cx="380" cy="137" rx="7" ry="15" transform="rotate(270 380 155)"/>
+                      </g>
+                      <circle class="sch-hub" cx="380" cy="155" r="6"/>
+
+                      <circle class="sch-sensor" cx="490" cy="155" r="7"/>
+
+                      <text class="sch-label" x="113" y="222" text-anchor="middle">FILTRO</text>
+                      <text class="sch-label" x="235" y="222" text-anchor="middle">SERPENTINA</text>
+                      <text class="sch-label" x="380" y="222" text-anchor="middle">VENTILADOR</text>
+                      <text class="sch-label" x="490" y="222" text-anchor="middle">INSUFLAMENTO</text>
+                      <text class="sch-value" x="113" y="243" text-anchor="middle">ΔP 118 Pa</text>
+                      <text class="sch-value" x="235" y="243" text-anchor="middle" id="sCoil">0% abertura</text>
+                      <text class="sch-value" x="380" y="243" text-anchor="middle" id="sFan">0 rpm</text>
+                      <text class="sch-value" x="490" y="243" text-anchor="middle" id="sSupply">-- °C</text>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="pn">
+                  <div class="pn__h"><span>TENDÊNCIA · ÚLTIMOS 30 s</span><span class="legend"><i class="lg lg--temp"></i>Ambiente <i class="lg lg--sp"></i>Setpoint <i class="lg lg--alm"></i><span>Limite</span></span></div>
+                  <div class="pn__b">
+                    <div class="plot">
+                      <svg class="trend" viewBox="0 0 600 150" preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                          <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#1279D6" stop-opacity=".2"/>
+                            <stop offset="1" stop-color="#1279D6" stop-opacity="0"/>
+                          </linearGradient>
+                        </defs>
+                        <polygon class="trend-area" id="trendArea" points=""/>
+                        <line class="trend-grid" x1="0" y1="25" x2="600" y2="25"/>
+                        <line class="trend-grid" x1="0" y1="75" x2="600" y2="75"/>
+                        <line class="trend-grid" x1="0" y1="125" x2="600" y2="125"/>
+                        <polyline class="trend-alm" id="trendAlm" points=""/>
+                        <polyline class="trend-sp" id="trendSp" points=""/>
+                        <polyline class="trend-temp" id="trendTemp" points=""/>
+                      </svg>
+                      <div class="axis mono"><span style="top:16.67%">28 °C</span><span style="top:50%">24 °C</span><span style="top:83.33%">20 °C</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <aside class="sup__side">
+                <div class="pn">
+                  <div class="pn__h"><span>FACEPLATE · UTA-01</span><span class="mono">PI</span></div>
+                  <div class="pn__b face">
+                    <div class="nd nd--hero"><span class="nd__l">Temperatura ambiente</span><strong class="nd__v mono"><span id="kTemp">--</span><small>°C</small></strong></div>
+
+                    <div class="seg" role="group" aria-label="Modo de operação">
+                      <button type="button" class="seg__b is-on" id="modeAuto" aria-pressed="true">AUTO</button>
+                      <button type="button" class="seg__b" id="modeMan" aria-pressed="false">MANUAL</button>
+                    </div>
+
+                    <div class="field">
+                      <span class="field__l">Setpoint</span>
+                      <div class="stepper">
+                        <button type="button" class="hb hb--sq" id="spDown" aria-label="Diminuir setpoint">−</button>
+                        <strong class="field__v mono"><span id="kSp">23.0</span> °C</strong>
+                        <button type="button" class="hb hb--sq" id="spUp" aria-label="Aumentar setpoint">+</button>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <span class="field__l">Válvula água gelada <em class="mono" id="kValve">0%</em></span>
+                      <input type="range" class="slider" id="valveSlider" min="0" max="100" step="1" value="0" disabled aria-label="Abertura da válvula (modo manual)">
+                    </div>
+
+                    <div class="field field--row">
+                      <span class="field__l">Ventilador</span><strong class="mono" id="kFan">0%</strong>
+                    </div>
+                    <div class="field field--row">
+                      <span class="field__l">Consumo elétrico</span><strong class="mono"><span id="kPower">0.0</span> kW</strong>
+                    </div>
+
+                    <button type="button" class="hb" id="liveLoad">Simular pico de carga</button>
+                  </div>
+                </div>
+
+                <div class="pn">
+                  <div class="pn__h"><span>EVENTOS</span><span class="mono">LOG</span></div>
+                  <ul class="log mono" id="liveLog" aria-live="polite"></ul>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+          <!-- ========== F4 · DIFERENCIAIS (diagnóstico) ========== -->
+          <section class="view" id="diferenciais" data-num="04" data-title="DIAGNÓSTICO · DIFERENCIAIS">
+            <div class="pn diag">
+              <div class="pn__h"><span>AUTODIAGNÓSTICO · POR QUE A HR AUTOMATION</span><span class="mono" id="diagSummary">0/4</span></div>
+              <div class="pn__b">
+                <div class="diag__row" data-diag>
+                  <span class="diag__n mono">01</span>
+                  <div class="diag__txt"><strong>Alta Tecnologia</strong><p>Controladores e softwares de última geração, compatíveis com os principais protocolos de HVAC/BMS do mercado.</p></div>
+                  <span class="diag__bar"><span></span></span>
+                  <span class="diag__state mono">AGUARDANDO</span>
+                </div>
+                <div class="diag__row" data-diag>
+                  <span class="diag__n mono">02</span>
+                  <div class="diag__txt"><strong>Precisão</strong><p>Cada painel, cada ponto de controle e cada conexão são calibrados para tolerância zero a falhas.</p></div>
+                  <span class="diag__bar"><span></span></span>
+                  <span class="diag__state mono">AGUARDANDO</span>
+                </div>
+                <div class="diag__row" data-diag>
+                  <span class="diag__n mono">03</span>
+                  <div class="diag__txt"><strong>Eficiência</strong><p>Processos otimizados que reduzem consumo energético e aumentam a disponibilidade do sistema.</p></div>
+                  <span class="diag__bar"><span></span></span>
+                  <span class="diag__state mono">AGUARDANDO</span>
+                </div>
+                <div class="diag__row" data-diag>
+                  <span class="diag__n mono">04</span>
+                  <div class="diag__txt"><strong>Confiabilidade</strong><p>Suporte técnico contínuo e monitoramento remoto para garantir que sua climatização nunca pare.</p></div>
+                  <span class="diag__bar"><span></span></span>
+                  <span class="diag__state mono">AGUARDANDO</span>
+                </div>
+                <div class="diag__foot">
+                  <p class="mono" id="diagMsg">Pronto para executar.</p>
+                  <button type="button" class="hb" id="diagRun">Executar diagnóstico</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========== F5 · SETORES ========== -->
+          <section class="view" id="setores" data-num="05" data-title="SETORES · ZONAS ATENDIDAS">
+            <div class="zones">
+              <article class="zone">
+                <div class="zone__h mono"><span>ZONA 01</span><i class="led led--ok"></i></div>
+                <svg class="zone__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M3 21V10l5 3v-3l5 3V6l8 4v11z"/><path d="M7 17h2M12 17h2M17 17h1"/></svg>
+                <h3>Industrial</h3>
+                <p>Linhas de produção, casas de máquinas e controle de processos com máxima disponibilidade.</p>
+                <span class="zone__val mono" data-base="21.8">--</span>
+              </article>
+              <article class="zone">
+                <div class="zone__h mono"><span>ZONA 02</span><i class="led led--ok"></i></div>
+                <svg class="zone__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9l1.5-5h13L20 9M4 9h16v11H4zM10 20v-5h4v5"/></svg>
+                <h3>Comercial &amp; Varejo</h3>
+                <p>Climatização e automação predial com eficiência energética.</p>
+                <span class="zone__val mono" data-base="23.1">--</span>
+              </article>
+              <article class="zone">
+                <div class="zone__h mono"><span>ZONA 03</span><i class="led led--ok"></i></div>
+                <svg class="zone__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>
+                <h3>Hospitalar &amp; Saúde</h3>
+                <p>Controle crítico de temperatura e pressão com redundância.</p>
+                <span class="zone__val mono" data-base="21.0">--</span>
+              </article>
+              <article class="zone">
+                <div class="zone__h mono"><span>ZONA 04</span><i class="led led--ok"></i></div>
+                <svg class="zone__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M3 19V6M3 15h18v4M21 15v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11.5" r="1.8"/></svg>
+                <h3>Hotelaria</h3>
+                <p>Conforto térmico consistente em grande escala, com baixo consumo.</p>
+                <span class="zone__val mono" data-base="22.5">--</span>
+              </article>
+              <article class="zone">
+                <div class="zone__h mono"><span>ZONA 05</span><i class="led led--ok"></i></div>
+                <svg class="zone__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7M9 4l3 2 3-2M9 20l3-2 3 2"/></svg>
+                <h3>Alimentício</h3>
+                <p>Refrigeração e cadeia de frio monitoradas ponta a ponta.</p>
+                <span class="zone__val mono" data-base="-18.2">--</span>
+              </article>
+              <article class="zone">
+                <div class="zone__h mono"><span>ZONA 06</span><i class="led led--ok"></i></div>
+                <svg class="zone__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></svg>
+                <h3>Data Centers</h3>
+                <p>Climatização de precisão para ambientes críticos 24/7.</p>
+                <span class="zone__val mono" data-base="20.4">--</span>
+              </article>
+            </div>
+          </section>
+
+          <!-- ========== F6 · REDE / MARCAS ========== -->
+          <section class="view" id="rede" data-num="06" data-title="REDE · ECOSSISTEMA HVAC">
+            <div class="net">
+              <div class="pn">
+                <div class="pn__h"><span>FABRICANTES INTEGRADOS</span><span class="mono">17 DISPOSITIVOS</span></div>
+                <div class="pn__b chips" id="chips">
+                  <span class="chip"><i class="led"></i>CAREL</span>
+                  <span class="chip"><i class="led"></i>DANFOSS</span>
+                  <span class="chip"><i class="led"></i>COPELAND</span>
+                  <span class="chip"><i class="led"></i>WEG</span>
+                  <span class="chip"><i class="led"></i>SIEMENS</span>
+                  <span class="chip"><i class="led"></i>SCHNEIDER ELECTRIC</span>
+                  <span class="chip"><i class="led"></i>ROCKWELL AUTOMATION</span>
+                  <span class="chip"><i class="led"></i>ABB</span>
+                  <span class="chip"><i class="led"></i>OMRON</span>
+                  <span class="chip"><i class="led"></i>MITSUBISHI ELECTRIC</span>
+                  <span class="chip"><i class="led"></i>HONEYWELL</span>
+                  <span class="chip"><i class="led"></i>JOHNSON CONTROLS</span>
+                  <span class="chip"><i class="led"></i>FESTO</span>
+                  <span class="chip"><i class="led"></i>PHOENIX CONTACT</span>
+                  <span class="chip"><i class="led"></i>ZIEHL-ABEGG</span>
+                  <span class="chip"><i class="led"></i>EBM-PAPST</span>
+                  <span class="chip"><i class="led"></i>WEIDMÜLLER</span>
+                </div>
+              </div>
+
+              <div class="pn">
+                <div class="pn__h"><span>PROTOCOLOS</span><span class="mono">TX · RX</span></div>
+                <table class="proto mono">
+                  <thead><tr><th>Protocolo</th><th>Meio</th><th>TX</th><th>RX</th><th class="num">Pacotes</th></tr></thead>
+                  <tbody id="protoRows">
+                    <tr><td>MODBUS</td><td>RTU · TCP</td><td><i class="led led--tx"></i></td><td><i class="led led--rx"></i></td><td class="num">0</td></tr>
+                    <tr><td>BACNET</td><td>IP · MS/TP</td><td><i class="led led--tx"></i></td><td><i class="led led--rx"></i></td><td class="num">0</td></tr>
+                    <tr><td>LONWORKS</td><td>FT-10</td><td><i class="led led--tx"></i></td><td><i class="led led--rx"></i></td><td class="num">0</td></tr>
+                    <tr><td>KNX</td><td>TP · IP</td><td><i class="led led--tx"></i></td><td><i class="led led--rx"></i></td><td class="num">0</td></tr>
+                    <tr><td>PROFIBUS</td><td>DP</td><td><i class="led led--tx"></i></td><td><i class="led led--rx"></i></td><td class="num">0</td></tr>
+                    <tr><td>OPC-UA</td><td>TCP</td><td><i class="led led--tx"></i></td><td><i class="led led--rx"></i></td><td class="num">0</td></tr>
+                    <tr><td>MQTT</td><td>TCP · TLS</td><td><i class="led led--tx"></i></td><td><i class="led led--rx"></i></td><td class="num">0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========== F7 · ORÇAMENTO ========== -->
+          <section class="view" id="orcamento" data-num="07" data-title="ORÇAMENTO · SOLICITAÇÃO">
+            <div class="quote">
+              <form class="pn" id="quoteForm" novalidate>
+                <div class="pn__h"><span>NOVA SOLICITAÇÃO</span><span class="mono">OS-<span id="osNum">0000</span></span></div>
+                <div class="pn__b form">
+                  <label class="in"><span>Nome</span><input type="text" name="nome" autocomplete="name" required></label>
+                  <label class="in"><span>Empresa</span><input type="text" name="empresa" autocomplete="organization"></label>
+                  <label class="in"><span>E-mail ou telefone</span><input type="text" name="contato" autocomplete="email" required></label>
+                  <label class="in"><span>Cidade / UF</span><input type="text" name="cidade" autocomplete="address-level2"></label>
+
+                  <fieldset class="svc">
+                    <legend>Serviços de interesse</legend>
+                    <button type="button" class="tgl" aria-pressed="false">Painéis Elétricos</button>
+                    <button type="button" class="tgl" aria-pressed="false">Controle de UTAs &amp; Chillers</button>
+                    <button type="button" class="tgl" aria-pressed="false">BMS &amp; Supervisório</button>
+                    <button type="button" class="tgl" aria-pressed="false">Integração IoT</button>
+                    <button type="button" class="tgl" aria-pressed="false">Retrofit de HVAC</button>
+                    <button type="button" class="tgl" aria-pressed="false">Manutenção Preditiva</button>
+                  </fieldset>
+
+                  <label class="in in--full"><span>Descreva a necessidade</span><textarea name="mensagem" rows="3"></textarea></label>
+
+                  <div class="form__foot">
+                    <p class="form__msg mono" id="formMsg" role="status"></p>
+                    <button type="submit" class="hb hb--primary hb--lg">Enviar solicitação</button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="quote__side">
+                <div class="pn">
+                  <div class="pn__h"><span>CONTATO DIRETO</span><span class="pill pill--ok"><i class="led led--ok"></i>ATENDIMENTO</span></div>
+                  <div class="pn__b contact">
+                    <a href="mailto:contato@hrautomation.com.br"><span class="mono">E-MAIL</span>contato@hrautomation.com.br</a>
+                    <a href="tel:+550000000000"><span class="mono">TELEFONE</span>+55 (00) 0000-0000</a>
+                    <div class="contact__social">
+                      <a href="#" class="hb">LinkedIn</a>
+                      <a href="#" class="hb">Instagram</a>
+                      <a href="#" class="hb">YouTube</a>
+                    </div>
+                  </div>
+                </div>
+                <p class="legal mono">© <span id="year"></span> HR Automation. Todos os direitos reservados.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="evt" id="evtBar">
+          <span class="evt__tag mono" id="evtTag">INFO</span>
+          <span class="evt__time mono" id="evtTime">--:--:--</span>
+          <span class="evt__msg" id="evtMsg">Aguardando eventos.</span>
+          <button type="button" class="evt__ack mono" id="ackBtn">ACK</button>
+        </div>
+
+        <nav class="fkeys" aria-label="Telas">
+          <button type="button" class="fkey" data-go="inicio"><span class="fkey__n mono">F1</span><span class="fkey__l">Início</span></button>
+          <button type="button" class="fkey" data-go="solucoes"><span class="fkey__n mono">F2</span><span class="fkey__l">Soluções</span></button>
+          <button type="button" class="fkey" data-go="supervisorio"><span class="fkey__n mono">F3</span><span class="fkey__l">Supervisório</span></button>
+          <button type="button" class="fkey" data-go="diferenciais"><span class="fkey__n mono">F4</span><span class="fkey__l">Diferenciais</span></button>
+          <button type="button" class="fkey" data-go="setores"><span class="fkey__n mono">F5</span><span class="fkey__l">Setores</span></button>
+          <button type="button" class="fkey" data-go="rede"><span class="fkey__n mono">F6</span><span class="fkey__l">Marcas</span></button>
+          <button type="button" class="fkey fkey--cta" data-go="orcamento"><span class="fkey__n mono">F7</span><span class="fkey__l">Orçamento</span></button>
+        </nav>
+      </div>
+    </div>
+
+    <div class="hmi__foot">
+      <span class="hmi__brand">HR AUTOMATION</span>
+      <span class="hmi__model mono">IHM-01 · TOUCH 15"</span>
+      <span class="hmi__leds mono">
+        <span><i class="led led--run"></i>RUN</span>
+        <span><i class="led led--com" id="ledCom"></i>COM</span>
+        <span><i class="led led--alm" id="ledAlm"></i>ALM</span>
+      </span>
+    </div>
+  </div>
+  <p class="door__tag mono" aria-hidden="true">QGBT-HVAC · PAINEL DE OPERAÇÃO</p>
+</main>
+
+<script src="ihm.js"></script>
+</body>
+</html>

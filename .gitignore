@@ -1,0 +1,15 @@
+# gerados pelo build 3D (3d/build_uta.py recria tudo)
+3d/textures/
+3d/__pycache__/
+*.blend
+*.blend1
+3d/preview.png
+
+# notas de desenvolvimento e configuração local
+plans/
+.claude/
+
+# sistema
+.DS_Store
+Thumbs.db
+desktop.ini
