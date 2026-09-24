@@ -99,8 +99,7 @@
     gsap.set(".reveal-inner", { yPercent: 110 });
     const heroTl = gsap.timeline({ delay: 0.15 });
     heroTl
-      .to(".hero__eyebrow", { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" })
-      .to(".reveal-inner", { yPercent: 0, duration: 1, stagger: 0.12, ease: "power4.out" }, "-=0.35")
+      .to(".reveal-inner", { yPercent: 0, duration: 1, stagger: 0.12, ease: "power4.out" })
       .to("[data-delay='0.3']", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.5")
       .to("[data-delay='0.45']", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.55")
       .to("[data-delay='0.6']", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.55");
