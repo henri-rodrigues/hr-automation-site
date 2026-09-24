@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Assinatura de e-mail — HR Automation</title>
+<link rel="icon" type="image/png" href="../img/favicon-48.png">
+<style>
+  :root{ --blue:#075CAD; --text:#10161d; --dim:#4c5866; --bg:#f6f8fb; --line:rgba(16,26,38,.1); }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background: var(--bg); color: var(--text); font: 15px/1.55 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main{ max-width: 720px; margin: 0 auto; padding: 48px 20px 64px; }
+  h1{ font-size: 1.6rem; margin: 0 0 6px; letter-spacing:-.01em; }
+  .lead{ margin: 0 0 28px; color: var(--dim); }
+  .card{ background:#fff; border:1px solid var(--line); border-radius: 16px; padding: 28px; box-shadow: 0 20px 50px -30px rgba(16,26,38,.3); }
+  .actions{ display:flex; gap:12px; align-items:center; margin: 20px 0 36px; flex-wrap: wrap; }
+  button{ font: 600 .95rem Inter, system-ui, sans-serif; color:#fff; background: var(--blue); border:0; border-radius: 999px; padding: 12px 22px; cursor:pointer; }
+  button:active{ transform: scale(.97); }
+  #copied{ color:#16a34a; font-weight:600; font-size:.9rem; opacity:0; transition: opacity .3s; }
+  #copied.show{ opacity:1; }
+  ol{ padding-left: 20px; margin: 0; }
+  li{ margin-bottom: 8px; }
+  h2{ font-size: 1.05rem; margin: 0 0 12px; }
+  code{ background:#eef2f6; padding: 1px 6px; border-radius: 5px; font-size:.88em; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Assinatura de e-mail</h1>
+  <p class="lead">O link aparece como <strong>HR Automation</strong> — o endereço do site fica escondido no clique.</p>
+
+  <div class="card">
+    <!-- a assinatura usa tabela e estilos inline: é o que os clientes de e-mail (Gmail, Outlook) respeitam -->
+    <div id="signature">
+      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.45;color:#10161d;">
+        <tr>
+          <td style="padding:0 16px 0 0;border-right:2px solid #075CAD;vertical-align:middle;">
+            <a href="https://henri-rodrigues.github.io/hr-automation-site/" style="text-decoration:none;">
+              <img src="https://henri-rodrigues.github.io/hr-automation-site/img/logo-hr-automation.png" alt="HR Automation" width="170" style="display:block;border:0;width:170px;height:auto;">
+            </a>
+          </td>
+          <td style="padding:0 0 0 16px;vertical-align:middle;">
+            <div style="font-size:15px;font-weight:bold;color:#10161d;">Henri Rodrigues</div>
+            <div style="color:#4c5866;margin-bottom:6px;">Automação industrial para HVAC</div>
+            <div><span style="color:#8792a0;">Tel.</span>&nbsp; <a href="tel:+5516997700883" style="color:#10161d;text-decoration:none;">+55 (16) 99770-0883</a></div>
+            <div><span style="color:#8792a0;">E-mail</span>&nbsp; <a href="mailto:henrir.automation@gmail.com" style="color:#10161d;text-decoration:none;">henrir.automation@gmail.com</a></div>
+            <div><span style="color:#8792a0;">Site</span>&nbsp; <a href="https://henri-rodrigues.github.io/hr-automation-site/" style="color:#075CAD;font-weight:bold;text-decoration:none;">HR Automation</a></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" id="copy">Copiar assinatura</button>
+    <span id="copied" role="status">Copiada! Agora é só colar no Gmail.</span>
+  </div>
+
+  <h2>Como colocar no Gmail</h2>
+  <ol>
+    <li>No Gmail, clique na engrenagem <strong>⚙</strong> → <strong>Ver todas as configurações</strong>.</li>
+    <li>Na aba <strong>Geral</strong>, desça até <strong>Assinatura</strong> → <strong>Criar nova</strong> (dê um nome, ex.: <code>HR Automation</code>).</li>
+    <li>Clique na caixa da assinatura e cole com <code>Ctrl</code> + <code>V</code>.</li>
+    <li>Em <strong>Padrões de assinatura</strong>, escolha essa assinatura para <em>novos e-mails</em> e <em>respostas</em>.</li>
+    <li>Desça até o fim da página e clique em <strong>Salvar alterações</strong>.</li>
+  </ol>
+</main>
+<script>
+  (function () {
+    const sig = document.getElementById("signature");
+    const note = document.getElementById("copied");
+    document.getElementById("copy").addEventListener("click", async () => {
+      const html = sig.innerHTML;
+      const text = sig.innerText;
+      try {
+        await navigator.clipboard.write([new ClipboardItem({
+          "text/html": new Blob([html], { type: "text/html" }),
+          "text/plain": new Blob([text], { type: "text/plain" }),
+        })]);
+      } catch (e) {
+        // navegadores sem ClipboardItem: copia a seleção formatada
+        const range = document.createRange();
+        range.selectNodeContents(sig);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand("copy");
+        sel.removeAllRanges();
+      }
+      note.classList.add("show");
+      setTimeout(() => note.classList.remove("show"), 4000);
+    });
+  })();
+</script>
+</body>
+</html>

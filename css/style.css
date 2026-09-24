@@ -223,9 +223,11 @@ a{ color: inherit; text-decoration: none; }
 .status-dot{ width:7px; height:7px; border-radius:50%; background: var(--success); box-shadow: 0 0 0 0 rgba(22,163,74,.55); animation: pulseDot 2s ease-in-out infinite; }
 @keyframes pulseDot{ 0%{ box-shadow: 0 0 0 0 rgba(22,163,74,.5); } 70%{ box-shadow: 0 0 0 8px rgba(22,163,74,0); } 100%{ box-shadow: 0 0 0 0 rgba(22,163,74,0); } }
 
-.hero__slides{ position:relative; min-height: 230px; }
+/* os slides ficam empilhados na mesma célula do grid: a altura é a do slide
+   mais alto, então o texto nunca invade os botões em telas grandes */
+.hero__slides{ position:relative; display:grid; }
 .hero__slide{
-  position:absolute; inset:0; width:100%;
+  grid-area: 1 / 1; position:relative; width:100%;
   opacity:0; transform: translateY(10px); pointer-events:none;
   transition: opacity .6s var(--ease), transform .6s var(--ease);
 }
@@ -264,7 +266,9 @@ a{ color: inherit; text-decoration: none; }
 
 .hero__visual{ position:relative; width:100%; }
 .hero__photo-card{
-  position:relative; z-index:1; aspect-ratio: 4/5; border-radius:24px; overflow:hidden;
+  /* em notebooks em tela cheia (768–864 px de altura) a foto 4:5 passava da dobra */
+  position:relative; z-index:1; aspect-ratio: 4/5; max-height: max(380px, calc(100svh - 190px)); width:100%;
+  border-radius:24px; overflow:hidden;
   box-shadow: 0 30px 70px -30px rgba(16,26,38,.35), 0 0 0 1px rgba(16,26,38,.05);
 }
 .hero__photo{
@@ -905,7 +909,6 @@ a{ color: inherit; text-decoration: none; }
 
 @media (max-width: 560px){
   .hero{ padding-top: 120px; }
-  .hero__slides{ min-height: 280px; }
 }
 
 /* =========================================================
@@ -927,4 +930,79 @@ a{ color: inherit; text-decoration: none; }
   .header__actions > .btn{ display:none; }
   .footer__logo{ height: 28px; }
   .cta-banner__logo{ height: 30px; }
+}
+
+/* =========================================================
+   FORMULÁRIO DE ORÇAMENTO (js/quote.js)
+   ========================================================= */
+.quote-dialog{
+  width: min(640px, calc(100% - 24px)); max-height: calc(100svh - 32px); padding: 0; border:0; border-radius: 22px;
+  background: var(--panel); color: var(--text); overflow:auto; overscroll-behavior: contain;
+  box-shadow: 0 40px 100px -30px rgba(16,26,38,.5);
+}
+.quote-dialog::backdrop{ background: rgba(16,22,29,.5); backdrop-filter: blur(4px); }
+.quote-dialog[open]{ animation: dialogIn .35s var(--ease); }
+.quote-dialog[open]::backdrop{ animation: fadeIn .35s var(--ease); }
+.quote-dialog__close{
+  position:sticky; top:14px; float:right; margin: 14px 14px 0 0; z-index:2;
+  width:36px; height:36px; display:grid; place-items:center; border-radius:50%; cursor:pointer;
+  border:1px solid var(--border-strong); background: var(--panel); color: var(--text-dim);
+  transition: background-color .2s var(--ease), color .2s var(--ease);
+}
+@media (hover: hover) and (pointer: fine){ .quote-dialog__close:hover{ background: var(--bg-soft); color: var(--text); } }
+
+.quote-form, .quote-done{ padding: 30px 32px 28px; }
+.quote-form__head{ margin-bottom: 22px; }
+.quote-form__logo{ height: 26px; width:auto; margin-bottom: 18px; }
+.quote-form__head h2, .quote-done h2{
+  margin:0 0 6px; font-family: var(--font-display); font-weight:800; font-size:1.7rem; letter-spacing:-.02em;
+}
+.quote-form__head p, .quote-done p{ margin:0; color: var(--text-dim); font-size:.95rem; }
+
+.quote-form__grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field{ display:flex; flex-direction:column; gap:6px; font-size:.8rem; font-weight:500; color: var(--text-dim); min-width:0; }
+.field--full{ grid-column: 1 / -1; }
+.field input, .field textarea{
+  font: inherit; font-size: 1rem; font-weight:400; color: var(--text); padding: 12px 14px; border-radius: 12px;
+  background: var(--bg); border:1px solid var(--border-strong); resize: vertical;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease), background-color .2s var(--ease);
+}
+.field textarea{ min-height: 104px; }
+.field input:focus, .field textarea:focus{ outline:none; background: var(--panel); border-color: var(--blue-2); box-shadow: 0 0 0 4px rgba(18,121,214,.15); }
+.field.is-invalid input{ border-color: #d64545; box-shadow: 0 0 0 4px rgba(214,69,69,.12); }
+
+.quote-form__services{ border:0; margin:0; padding:0; }
+.quote-form__services legend{ padding:0; margin-bottom: 8px; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{ position:relative; cursor:pointer; }
+.chip input{ position:absolute; opacity:0; pointer-events:none; }
+.chip span{
+  display:inline-block; padding: 9px 14px; border-radius: 999px; font-size:.82rem; font-weight:500; color: var(--text);
+  background: var(--bg); border:1px solid var(--border-strong);
+  transition: background-color .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
+}
+.chip input:checked + span{ background: var(--blue); border-color: var(--blue); color:#fff; }
+.chip input:focus-visible + span{ outline:2px solid var(--blue-2); outline-offset:2px; }
+@media (hover: hover) and (pointer: fine){ .chip:hover input:not(:checked) + span{ border-color: var(--blue); color: var(--blue); } }
+
+.quote-form__hp{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+
+.quote-form__foot{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top: 22px; }
+.quote-form__status{ margin:0; font-size:.85rem; color: var(--text-dim); }
+.quote-form__status.is-error{ color:#c23434; }
+.quote-form__status a{ color: var(--blue); font-weight:600; text-decoration: underline; }
+#quoteSubmit:disabled{ opacity:.7; pointer-events:none; }
+
+.quote-done{ text-align:center; padding-top: 44px; padding-bottom: 36px; }
+.quote-done__icon{
+  display:grid; place-items:center; width:64px; height:64px; margin: 0 auto 18px; border-radius:50%;
+  background: rgba(22,163,74,.12); color: var(--success);
+}
+.quote-done p{ margin-bottom: 24px; }
+
+@media (max-width: 600px){
+  .quote-form, .quote-done{ padding: 24px 18px 20px; }
+  .quote-form__grid{ grid-template-columns: 1fr; }
+  .quote-form__foot{ flex-direction:column-reverse; align-items:stretch; }
+  .quote-form__foot .btn{ justify-content:center; }
 }

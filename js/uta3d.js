@@ -78,6 +78,9 @@ function init() {
   controls.minAzimuthAngle = -0.8;        // fica dentro da casa de máquinas
   controls.maxAzimuthAngle = 0.8;
   controls.rotateSpeed = 0.7;
+  // o OrbitControls põe touch-action:none; no celular isso impedia rolar a página
+  // com o dedo sobre o 3D. Vertical rola a página, horizontal gira a máquina.
+  canvas.style.touchAction = "pan-y";
 
   /* ---------------------------------------------------------
      Pontos de foco (coordenadas do modelo, já centralizado)

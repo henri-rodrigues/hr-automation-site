@@ -4,13 +4,74 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HR Automation — Automação Industrial para HVAC</title>
-<meta name="description" content="Automação industrial especializada em HVAC: UTAs, chillers, centrais de água gelada e climatização predial com alta tecnologia, precisão e eficiência.">
+<meta name="description" content="HR Automation: automação industrial especializada em HVAC — UTAs, chillers, centrais de água gelada, painéis elétricos, BMS e supervisório. Solicite um orçamento.">
+<link rel="canonical" href="https://henri-rodrigues.github.io/hr-automation-site/">
+<meta name="application-name" content="HR Automation">
+<meta name="author" content="HR Automation">
+<meta name="theme-color" content="#075CAD">
+
+<!-- ícones -->
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+<!-- prévia do link (WhatsApp, LinkedIn, e-mail, Google) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HR Automation">
+<meta property="og:title" content="HR Automation — Automação Industrial para HVAC">
+<meta property="og:description" content="Automação de UTAs, chillers e centrais de água gelada, painéis elétricos, BMS e supervisório.">
+<meta property="og:url" content="https://henri-rodrigues.github.io/hr-automation-site/">
+<meta property="og:image" content="https://henri-rodrigues.github.io/hr-automation-site/img/og-hr-automation.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="HR Automation — UTA em casa de máquinas">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HR Automation — Automação Industrial para HVAC">
+<meta name="twitter:image" content="https://henri-rodrigues.github.io/hr-automation-site/img/og-hr-automation.jpg">
+
+<!-- dados estruturados: o Google entende que o site e a empresa se chamam "HR Automation" -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://henri-rodrigues.github.io/hr-automation-site/#website",
+      "name": "HR Automation",
+      "alternateName": ["HR Automação", "HR Automation HVAC"],
+      "url": "https://henri-rodrigues.github.io/hr-automation-site/",
+      "inLanguage": "pt-BR",
+      "publisher": { "@id": "https://henri-rodrigues.github.io/hr-automation-site/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://henri-rodrigues.github.io/hr-automation-site/#org",
+      "name": "HR Automation",
+      "url": "https://henri-rodrigues.github.io/hr-automation-site/",
+      "logo": "https://henri-rodrigues.github.io/hr-automation-site/img/favicon-512.png",
+      "image": "https://henri-rodrigues.github.io/hr-automation-site/img/og-hr-automation.jpg",
+      "description": "Automação industrial para HVAC: UTAs, chillers, centrais de água gelada, painéis elétricos, BMS e supervisório.",
+      "email": "henrir.automation@gmail.com",
+      "telephone": "+55-16-99770-0883",
+      "areaServed": "BR",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "+55-16-99770-0883",
+        "email": "henrir.automation@gmail.com",
+        "availableLanguage": ["Portuguese"]
+      }
+    }
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Archivo:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20260924161900">
 </head>
 <body>
 
@@ -477,7 +538,7 @@
 
     <div class="footer__col">
       <h4>CONTATO</h4>
-      <a href="mailto:contato@hrautomation.com.br">contato@hrautomation.com.br</a>
+      <a href="mailto:henrir.automation@gmail.com">henrir.automation@gmail.com</a>
       <a href="tel:+5516997700883">+55 (16) 99770-0883</a>
     </div>
 
@@ -501,17 +562,71 @@
   </div>
 </footer>
 
+<!-- ===================== FORMULÁRIO DE ORÇAMENTO (js/quote.js) ===================== -->
+<dialog class="quote-dialog" id="quoteDialog" aria-labelledby="quoteTitle">
+  <button type="button" class="quote-dialog__close" data-quote-close aria-label="Fechar">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+
+  <form class="quote-form" id="quoteForm" novalidate>
+    <div class="quote-form__head">
+      <img src="img/logo-hr-automation.webp" alt="HR Automation" class="quote-form__logo">
+      <h2 id="quoteTitle">Solicitar orçamento</h2>
+      <p>Conte um pouco sobre o seu projeto. Respondemos pelo e-mail ou telefone informado.</p>
+    </div>
+
+    <div class="quote-form__grid">
+      <label class="field"><span>Nome *</span><input type="text" name="nome" autocomplete="name" required></label>
+      <label class="field"><span>Empresa</span><input type="text" name="empresa" autocomplete="organization"></label>
+      <label class="field"><span>E-mail *</span><input type="email" name="email" autocomplete="email" required></label>
+      <label class="field"><span>Telefone / WhatsApp *</span><input type="tel" name="telefone" autocomplete="tel" inputmode="tel" required></label>
+      <label class="field field--full"><span>Cidade / UF</span><input type="text" name="cidade" autocomplete="address-level2"></label>
+      <fieldset class="field field--full quote-form__services">
+        <legend>Serviços de interesse</legend>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="servicos" value="Painéis Elétricos"><span>Painéis Elétricos</span></label>
+          <label class="chip"><input type="checkbox" name="servicos" value="Controle de UTAs & Chillers"><span>Controle de UTAs &amp; Chillers</span></label>
+          <label class="chip"><input type="checkbox" name="servicos" value="BMS & Supervisório"><span>BMS &amp; Supervisório</span></label>
+          <label class="chip"><input type="checkbox" name="servicos" value="Integração IoT"><span>Integração IoT</span></label>
+          <label class="chip"><input type="checkbox" name="servicos" value="Retrofit de HVAC"><span>Retrofit de HVAC</span></label>
+          <label class="chip"><input type="checkbox" name="servicos" value="Manutenção Preditiva"><span>Manutenção Preditiva</span></label>
+        </div>
+      </fieldset>
+      <label class="field field--full"><span>Descreva a necessidade</span><textarea name="mensagem" rows="4" placeholder="Equipamentos, quantidade, prazo, local da obra…"></textarea></label>
+      <input type="text" name="_honey" class="quote-form__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    </div>
+
+    <div class="quote-form__foot">
+      <p class="quote-form__status" id="quoteStatus" role="status" aria-live="polite"></p>
+      <button type="submit" class="btn btn--primary btn--lg" id="quoteSubmit">
+        <span class="btn__label">Enviar solicitação</span>
+        <span class="btn__icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </button>
+    </div>
+  </form>
+
+  <div class="quote-done" id="quoteDone" hidden>
+    <span class="quote-done__icon" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    <h2>Solicitação enviada</h2>
+    <p>Obrigado! Recebemos os seus dados e entraremos em contato em breve.</p>
+    <button type="button" class="btn btn--primary" data-quote-close><span class="btn__label">Fechar</span></button>
+  </div>
+</dialog>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/script.js"></script>
-<script src="js/pgd.js"></script>
-<script src="js/brands.js"></script>
+<script src="js/script.js?v=20260924161900"></script>
+<script src="js/pgd.js?v=20260924161900"></script>
+<script src="js/brands.js?v=20260924161900"></script>
+<script src="js/quote.js?v=20260924161900"></script>
 <script type="importmap">
   { "imports": {
       "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
       "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
   } }
 </script>
-<script type="module" src="js/uta3d.js"></script>
+<script type="module" src="js/uta3d.js?v=20260924161900"></script>
 </body>
 </html>

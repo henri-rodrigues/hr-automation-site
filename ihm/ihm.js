@@ -645,10 +645,29 @@
       get("mensagem"),
     ].join("\n");
     const subject = `Solicitação de orçamento OS-${osNum} — ${get("nome")}`;
-    formMsg.textContent = `Solicitação OS-${osNum} preparada no seu aplicativo de e-mail.`;
-    formMsg.className = "form__msg mono is-ok";
-    logEvent(`Solicitação OS-${osNum} gerada`, "ok");
-    window.location.href = `mailto:contato@hrautomation.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    formMsg.textContent = "Enviando…";
+    formMsg.className = "form__msg mono";
+    fetch("https://formsubmit.co/ajax/henrir.automation@gmail.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        Nome: get("nome"), Empresa: get("empresa") || "-", Contato: get("contato"),
+        "Cidade/UF": get("cidade") || "-", "Serviços": services.length ? services.join(", ") : "-",
+        Mensagem: get("mensagem") || "-", _subject: subject, _template: "table", _captcha: "false",
+      }),
+    })
+      .then((r) => r.json())
+      .then((j) => {
+        if (String(j.success) !== "true") throw new Error(j.message);
+        formMsg.textContent = `Solicitação OS-${osNum} enviada. Retornaremos em breve.`;
+        formMsg.className = "form__msg mono is-ok";
+        logEvent(`Solicitação OS-${osNum} enviada`, "ok");
+      })
+      .catch(() => {
+        formMsg.textContent = "Falha no envio — abrindo o seu e-mail.";
+        formMsg.className = "form__msg mono is-error";
+        window.location.href = `mailto:henrir.automation@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
   });
   $$(".in input").forEach((input) => input.addEventListener("input", () => input.closest(".in").classList.remove("is-invalid")));
 
