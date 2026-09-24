@@ -135,12 +135,21 @@
       form.hidden = true;
       done.hidden = false;
     } catch (err) {
+      const reason = String((err && err.message) || "");
+      console.warn("[orçamento] FormSubmit:", reason);
       status.className = "quote-form__status is-error";
       status.innerHTML = "";
-      status.append("Não foi possível enviar agora. ");
+      if (/activat/i.test(reason)) {
+        // formulário ainda não ativado: o FormSubmit mandou o e-mail "Activate Form" para a caixa TO
+        status.append("Envio aguardando ativação do formulário. Enquanto isso, ");
+      } else if (location.protocol === "file:") {
+        status.append("Abra o site pelo endereço (https://…), não pelo arquivo no computador. Ou ");
+      } else {
+        status.append("Não foi possível enviar agora. ");
+      }
       const a = document.createElement("a");
       a.href = mailtoFallback(d);
-      a.textContent = "Enviar pelo seu e-mail";
+      a.textContent = status.textContent.endsWith(". ") ? "Enviar pelo seu e-mail" : "envie pelo seu e-mail";
       status.append(a);
     } finally {
       submit.disabled = false;
